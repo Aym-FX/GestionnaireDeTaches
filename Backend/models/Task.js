@@ -33,6 +33,13 @@ const taskSchema = new mongoose.Schema({
       date: { type: Date, default: Date.now },
     },
   ],
+  sousTaches: [
+    {
+      titre: { type: String, required: true },
+      statut: { type: String, enum: ["à faire", "en cours", "terminée"], default: "à faire" },
+      echeance: { type: Date }
+    }
+  ],
 });
 
 module.exports = mongoose.model("Task", taskSchema);

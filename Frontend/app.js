@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const taskForm = document.getElementById("task-form");
   const taskCreationSection = document.getElementById("task-creation");
   const toggleFormBtn = document.getElementById("toggle-form-btn");
+  const filterForm = document.getElementById("filter-form");
   let tasks = []; // Stocker les tâches récupérées
   let sortOrder = {}; // Stocker l'ordre de tri pour chaque colonne
 
@@ -18,27 +19,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Fonction pour charger les tâches
-  async function loadTasks() {
+  async function loadTasks(filters = {}) {
     try {
-      console.log("Chargement des tâches...");
-      const response = await fetch("http://localhost:3000/tasks");
-
+      const queryParams = new URLSearchParams(filters).toString();
+      const response = await fetch(`http://localhost:3000/tasks?${queryParams}`);
+  
       if (!response.ok) {
         throw new Error(`Erreur HTTP : ${response.status}`);
       }
-
-      tasks = await response.json();
-      console.log("Tâches récupérées :", tasks);
-
-      if (tasks.length === 0) {
-        tasksContainer.innerHTML = "<p>Aucune tâche trouvée.</p>";
-        return;
-      }
-
+  
+      const tasks = await response.json();
       renderTasks(tasks);
     } catch (error) {
       console.error("Erreur lors du chargement des tâches :", error);
-      tasksContainer.innerHTML = `<p style="color:red;">Erreur : ${error.message}</p>`;
     }
   }
 
@@ -237,6 +230,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Erreur lors de la création de la tâche :", error);
       alert("Erreur lors de la création de la tâche.");
     }
+  });
+
+  filterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const filters = {
+      statut: document.getElementById("filter-statut").value,
+      priorite: document.getElementById("filter-priorite").value,
+      categorie: document.getElementById("filter-categorie").value,
+      etiquette: document.getElementById("filter-etiquette").value,
+      avant: document.getElementById("filter-avant").value,
+      apres: document.getElementById("filter-apres").value,
+      q: document.getElementById("filter-q").value,
+    };
+
+    loadTasks(filters);
   });
 
   // Charger les tâches au démarrage

@@ -104,6 +104,64 @@
     <!-- Section pour afficher la liste des tâches -->
     <section class="task-list">
       <h2>Liste des Tâches</h2>
+      <section class="filters">
+        <form id="filter-form" class="compact-filters">
+          <div class="filter-group">
+            <label for="filter-statut">Statut</label>
+            <select id="filter-statut">
+              <option value="">Tous</option>
+              <option value="à faire">À faire</option>
+              <option value="en cours">En cours</option>
+              <option value="terminée">Terminée</option>
+              <option value="annulée">Annulée</option>
+            </select>
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-priorite">Priorité</label>
+            <select id="filter-priorite">
+              <option value="">Toutes</option>
+              <option value="basse">Basse</option>
+              <option value="moyenne">Moyenne</option>
+              <option value="haute">Haute</option>
+              <option value="critique">Critique</option>
+            </select>
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-categorie">Catégorie</label>
+            <select id="filter-categorie">
+              <option value="">Toutes</option>
+              <option value="perso">Perso</option>
+              <option value="travail">Travail</option>
+              <option value="projet">Projet</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-etiquette">Étiquette</label>
+            <input type="text" id="filter-etiquette" placeholder="Étiquette" />
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-avant">Date limite avant</label>
+            <input type="date" id="filter-avant" />
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-apres">Date limite après</label>
+            <input type="date" id="filter-apres" />
+          </div>
+      
+          <div class="filter-group">
+            <label for="filter-q">Recherche texte</label>
+            <input type="text" id="filter-q" placeholder="Recherche texte" />
+          </div>
+      
+          <button type="submit">Appliquer</button>
+        </form>
+      </section>
       <div id="tasks-container"></div>
     </section>
 

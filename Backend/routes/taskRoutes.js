@@ -5,9 +5,25 @@ const Task = require("../models/Task"); // Assurez-vous que le modèle Task est 
 // GET /tasks : Récupérer toutes les tâches
 router.get("/", async (req, res) => {
   try {
-    console.log("Requête reçue sur /tasks");
-    const tasks = await Task.find();
-    console.log("Tâches récupérées :", tasks);
+    console.log("Requête reçue sur /tasks avec filtres :", req.query);
+    const { statut, priorite, categorie, etiquette, avant, apres, q } = req.query;
+    const filter = {};
+
+    if (statut) filter.statut = statut;
+    if (priorite) filter.priorite = priorite;
+    if (categorie) filter.categorie = categorie;
+    if (etiquette) filter.etiquettes = etiquette;
+    if (avant) filter.echeance = { $lte: new Date(avant) };
+    if (apres) filter.echeance = { $gte: new Date(apres) };
+    if (q) {
+      filter.$or = [
+        { titre: { $regex: q, $options: "i" } },
+        { description: { $regex: q, $options: "i" } }
+      ];
+    }
+
+    const tasks = await Task.find(filter);
+    console.log("Tâches récupérées avec filtres :", tasks);
     res.json(tasks);
   } catch (error) {
     console.error("Erreur lors de la récupération des tâches :", error);
@@ -77,13 +93,18 @@ router.post("/:id/comment", async (req, res) => {
 // PUT /tasks/:id : Modifier une tâche existante
 router.put("/:id", async (req, res) => {
   try {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
+    const taskId = req.params.id;
+    const updatedTaskData = req.body;
+
+    const updatedTask = await Task.findByIdAndUpdate(taskId, updatedTaskData, {
       new: true,
       runValidators: true,
     });
+
     if (!updatedTask) {
       return res.status(404).json({ message: "Tâche non trouvée" });
     }
+
     res.json(updatedTask);
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la tâche :", error);
