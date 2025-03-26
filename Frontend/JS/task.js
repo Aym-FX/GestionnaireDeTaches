@@ -181,51 +181,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   taskForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Collecter les sous-tâches depuis le DOM
-    const updatedSousTaches = Array.from(
-      document.querySelectorAll(".sous-tache")
-    )
-      .map((sousTache) => {
-        const titre = sousTache.querySelector(".sous-tache-titre").value.trim();
-        const statut = sousTache.querySelector(".sous-tache-statut").value;
-        const echeanceValue = sousTache.querySelector(
-          ".sous-tache-echeance"
-        ).value;
-
-        // Ne pas inclure les sous-tâches sans titre
-        if (!titre) return null;
-
-        return {
-          titre: titre,
-          statut: statut,
-          echeance: echeanceValue || null,
-        };
-      })
-      .filter((st) => st !== null); // Filtrer les sous-tâches nulles
-
-    // Construire l'objet de la tâche mise à jour
     const updatedTask = {
-      titre: document.getElementById("titre").value.trim(),
-      description: document.getElementById("description").value.trim(),
+      titre: document.getElementById("titre").value,
+      description: document.getElementById("description").value,
       echeance: document.getElementById("echeance").value,
       statut: document.getElementById("statut").value,
       priorite: document.getElementById("priorite").value,
       auteur: {
-        nom: document.getElementById("auteurNom").value.trim(),
-        prenom: document.getElementById("auteurPrenom").value.trim(),
-        email: document.getElementById("auteurEmail").value.trim(),
+        nom: document.getElementById("auteurNom").value,
+        prenom: document.getElementById("auteurPrenom").value,
+        email: document.getElementById("auteurEmail").value,
       },
       categorie: document.getElementById("categorie").value,
-      etiquettes: document
-        .getElementById("etiquettes")
-        .value.split(",")
-        .map((tag) => tag.trim())
-        .filter((tag) => tag !== ""),
-      sousTaches: updatedSousTaches, // Inclure les sous-tâches
+      etiquettes: document.getElementById("etiquettes").value.split(",").map(tag => tag.trim()),
+      sousTaches: Array.from(document.querySelectorAll(".sous-tache")).map(sousTache => ({
+        titre: sousTache.querySelector(".sous-tache-titre").value,
+        statut: sousTache.querySelector(".sous-tache-statut").value,
+        echeance: sousTache.querySelector(".sous-tache-echeance").value
+      }))
     };
-
-    console.log("Données envoyées au backend :", updatedTask);
-    console.log("Sous-tâches envoyées :", updatedSousTaches);
 
     try {
       const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
@@ -237,23 +211,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          "Erreur lors de la mise à jour de la tâche: " +
-            (errorData.message || "")
-        );
+        throw new Error("Erreur lors de la mise à jour de la tâche");
       }
-
-      // Récupérer la réponse et vérifier
-      const result = await response.json();
-      console.log("Réponse du serveur:", result);
-      console.log("Sous-tâches enregistrées:", result.sousTaches);
 
       alert("Tâche mise à jour avec succès !");
       window.location.href = "/Views/index.html";
     } catch (error) {
       console.error("Erreur lors de la mise à jour de la tâche :", error);
-      alert("Erreur lors de la mise à jour de la tâche: " + error.message);
+      alert("Erreur lors de la mise à jour de la tâche.");
     }
   });
 

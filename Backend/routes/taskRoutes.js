@@ -98,24 +98,19 @@ router.post("/:id/comment", async (req, res) => {
 // PUT /tasks/:id : Modifier une tâche existante
 router.put("/:id", async (req, res) => {
   try {
-    const taskId = req.params.id;
-    const updatedTaskData = req.body;
+    const { id } = req.params;
+    const updatedTask = req.body;
 
-    const updatedTask = await Task.findByIdAndUpdate(taskId, updatedTaskData, {
-      new: true,
-      runValidators: true,
-    });
+    const task = await Task.findByIdAndUpdate(id, updatedTask, { new: true });
 
-    if (!updatedTask) {
+    if (!task) {
       return res.status(404).json({ message: "Tâche non trouvée" });
     }
 
-    res.json(updatedTask);
+    res.json(task);
   } catch (error) {
     console.error("Erreur lors de la mise à jour de la tâche :", error);
-    res
-      .status(500)
-      .json({ message: "Erreur lors de la mise à jour de la tâche", error });
+    res.status(500).json({ message: "Erreur lors de la mise à jour de la tâche", error });
   }
 });
 
