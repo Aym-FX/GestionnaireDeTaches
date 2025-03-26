@@ -162,6 +162,29 @@
           <button type="submit">Appliquer</button>
         </form>
       </section>
+      <!-- Formulaire de tri -->
+      <section class="sorting">
+        <form id="sort-form" class="compact-sorting">
+          <div class="sort-group">
+            <label for="sort-tri">Trier par</label>
+            <select id="sort-tri">
+              <option value="dateCreation">Date de création</option>
+              <option value="echeance">Date d'échéance</option>
+              <option value="priorite">Priorité</option>
+            </select>
+          </div>
+
+          <div class="sort-group">
+            <label for="sort-ordre">Ordre</label>
+            <select id="sort-ordre">
+              <option value="asc">Ascendant</option>
+              <option value="desc">Descendant</option>
+            </select>
+          </div>
+
+          <button type="submit" class="sort-button">Appliquer le tri</button>
+        </form>
+      </section>
       <div id="tasks-container"></div>
     </section>
 

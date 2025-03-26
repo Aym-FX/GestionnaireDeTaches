@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const taskCreationSection = document.getElementById("task-creation");
   const toggleFormBtn = document.getElementById("toggle-form-btn");
   const filterForm = document.getElementById("filter-form");
+  const sortForm = document.getElementById("sort-form");
   let tasks = []; // Stocker les tâches récupérées
   let sortOrder = {}; // Stocker l'ordre de tri pour chaque colonne
 
@@ -19,16 +20,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Fonction pour charger les tâches
-  async function loadTasks(filters = {}) {
+  async function loadTasks(filters = {}, tri = 'dateCreation', ordre = 'asc') {
     try {
-      const queryParams = new URLSearchParams(filters).toString();
+      console.log("Chargement des tâches avec tri :", { tri, ordre });
+      const queryParams = new URLSearchParams({
+        ...filters,
+        tri,
+        ordre
+      }).toString();
       const response = await fetch(`http://localhost:3000/tasks?${queryParams}`);
-  
+
       if (!response.ok) {
         throw new Error(`Erreur HTTP : ${response.status}`);
       }
-  
+
       const tasks = await response.json();
+      console.log("Tâches reçues :", tasks);
       renderTasks(tasks);
     } catch (error) {
       console.error("Erreur lors du chargement des tâches :", error);
@@ -89,6 +96,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       </table>
     `;
 
+    // Attacher les événements de clic pour le tri
+    document.querySelectorAll('.tasks-table th[data-column]').forEach(header => {
+      header.addEventListener('click', () => {
+        const column = header.dataset.column;
+        const currentOrder = sortOrder[column] || 'asc';
+        const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+        sortOrder[column] = newOrder;
+        loadTasks({}, column, newOrder);
+      });
+    });
+
     // Rendre les lignes cliquables
     document.querySelectorAll(".task-row").forEach((row) => {
       row.addEventListener("click", (e) => {
@@ -114,16 +132,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         deleteTask(taskId);
       });
     });
-
-    // Attacher les événements de tri
-    document
-      .querySelectorAll(".tasks-table th[data-column]")
-      .forEach((header) => {
-        header.addEventListener("click", () => {
-          const column = header.dataset.column;
-          sortTasks(column);
-        });
-      });
   }
 
   // Fonction pour trier les tâches
@@ -232,6 +240,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Attacher l'événement de soumission du formulaire de filtrage
   filterForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -246,6 +255,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     loadTasks(filters);
+  });
+
+  // Attacher l'événement de soumission du formulaire de tri
+  sortForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const tri = document.getElementById("sort-tri").value;
+    const ordre = document.getElementById("sort-ordre").value;
+
+    console.log("Tri par :", tri, "Ordre :", ordre);
+
+    loadTasks({}, tri, ordre);
   });
 
   // Charger les tâches au démarrage

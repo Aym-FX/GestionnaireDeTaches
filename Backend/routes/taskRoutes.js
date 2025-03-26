@@ -6,7 +6,7 @@ const Task = require("../models/Task"); // Assurez-vous que le modèle Task est 
 router.get("/", async (req, res) => {
   try {
     console.log("Requête reçue sur /tasks avec filtres :", req.query);
-    const { statut, priorite, categorie, etiquette, avant, apres, q } = req.query;
+    const { statut, priorite, categorie, etiquette, avant, apres, q, tri, ordre } = req.query;
     const filter = {};
 
     if (statut) filter.statut = statut;
@@ -22,8 +22,13 @@ router.get("/", async (req, res) => {
       ];
     }
 
-    const tasks = await Task.find(filter);
-    console.log("Tâches récupérées avec filtres :", tasks);
+    const sortOptions = {};
+    if (tri) {
+      sortOptions[tri] = ordre === 'desc' ? -1 : 1;
+    }
+
+    const tasks = await Task.find(filter).sort(sortOptions);
+    console.log("Tâches récupérées avec filtres et tri :", tasks);
     res.json(tasks);
   } catch (error) {
     console.error("Erreur lors de la récupération des tâches :", error);
