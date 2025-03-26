@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Détails de la Tâche</title>
+    <link rel="stylesheet" href="/CSS/styles.css" />
+  </head>
+  <body>
+    <header>
+      <button id="back-btn">Retour à la liste</button>
+      <h1>Détails de la Tâche</h1>
+    </header>
+    <main>
+      <div id="task-details" class="task-details"></div>
+    </main>
+    <section class="task-comments">
+      <h3>Commentaires</h3>
+      <ul id="comments-list"></ul>
+      <form id="comment-form">
+        <input
+          type="text"
+          id="comment-author"
+          placeholder="Votre nom"
+          required
+        />
+        <textarea
+          id="comment-content"
+          placeholder="Votre commentaire"
+          required
+        ></textarea>
+        <button type="submit">Ajouter un commentaire</button>
+      </form>
+    </section>
+    <script src="/JS/details.js"></script>
+  </body>
+</html>

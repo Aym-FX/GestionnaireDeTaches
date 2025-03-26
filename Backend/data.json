@@ -1,0 +1,88 @@
+[
+  {
+    "titre": "Finaliser le rapport",
+    "description": "Rédiger et envoyer le rapport final du projet.",
+    "dateCreation": "2025-03-20T10:00:00Z",
+    "echeance": "2025-03-30T23:59:59Z",
+    "statut": "en cours",
+    "priorite": "haute",
+    "auteur": {
+      "nom": "Dupont",
+      "prenom": "Alice",
+      "email": "alice.dupont@example.com"
+    },
+    "categorie": "travail",
+    "etiquettes": ["urgent", "rapport"],
+    "sousTaches": [
+      {
+        "titre": "Relire le document",
+        "statut": "à faire",
+        "echeance": "2025-03-28T23:59:59Z"
+      }
+    ],
+    "commentaires": [
+      {
+        "auteur": "Bob Martin",
+        "date": "2025-03-25T12:00:00Z",
+        "contenu": "Ne pas oublier la conclusion !"
+      }
+    ],
+    "historiqueModifications": [
+      {
+        "champModifie": "statut",
+        "ancienneValeur": "à faire",
+        "nouvelleValeur": "en cours",
+        "date": "2025-03-24T15:00:00Z"
+      }
+    ]
+  },
+  {
+    "titre": "Préparer la réunion",
+    "description": "Organiser les documents et réserver une salle.",
+    "dateCreation": "2025-03-22T14:30:00Z",
+    "echeance": "2025-04-01T10:00:00Z",
+    "statut": "à faire",
+    "priorite": "moyenne",
+    "auteur": {
+      "nom": "Durand",
+      "prenom": "Marc",
+      "email": "marc.durand@example.com"
+    },
+    "categorie": "travail",
+    "etiquettes": ["réunion", "organisation"],
+    "sousTaches": [],
+    "commentaires": [],
+    "historiqueModifications": []
+  },
+  {
+    "titre": "Acheter un cadeau d'anniversaire",
+    "description": "Trouver et acheter un cadeau pour Paul.",
+    "dateCreation": "2025-03-18T09:00:00Z",
+    "echeance": "2025-03-26T23:59:59Z",
+    "statut": "terminée",
+    "priorite": "critique",
+    "auteur": {
+      "nom": "Lemoine",
+      "prenom": "Sophie",
+      "email": "sophie.lemoine@example.com"
+    },
+    "categorie": "perso",
+    "etiquettes": ["anniversaire", "cadeau"],
+    "sousTaches": [],
+    "commentaires": [
+      {
+        "auteur": "Paul Dupuis",
+        "date": "2025-03-26T20:00:00Z",
+        "contenu": "Merci beaucoup !"
+      }
+    ],
+    "historiqueModifications": [
+      {
+        "champModifie": "statut",
+        "ancienneValeur": "en cours",
+        "nouvelleValeur": "terminée",
+        "date": "2025-03-26T22:00:00Z"
+      }
+    ]
+  }
+]

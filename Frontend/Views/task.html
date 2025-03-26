@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modifier la tâche</title>
+    <link rel="stylesheet" href="/CSS/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Modifier la tâche</h1>
+        <button id="back-btn">Retour à la liste</button>
+      </header>
+
+      <main>
+        <form id="task-form">
+          <div id="task-details">
+            <!-- Les détails de la tâche seront chargés ici dynamiquement -->
+          </div>
+
+          <!-- Section pour les sous-tâches -->
+          <h3>Sous-tâches</h3>
+          <div id="sous-taches-container">
+            <!-- Les sous-tâches seront chargées ici dynamiquement -->
+          </div>
+          <button type="button" id="add-sous-tache-btn">
+            Ajouter une sous-tâche
+          </button>
+
+          <div class="form-actions">
+            <button type="submit">Enregistrer les modifications</button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="/JS/task.js"></script>
+  </body>
+</html>

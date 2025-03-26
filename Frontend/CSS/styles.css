@@ -1,0 +1,458 @@
+/* Style général */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: #444;
+}
+
+/* Section de création de tâche */
+.task-creation {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-creation h2 {
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+.task-creation form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-creation input,
+.task-creation select,
+.task-creation button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.task-creation button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.task-creation button:hover {
+  background-color: #0056b3;
+}
+
+/* Section de liste des tâches */
+.task-list {
+  margin: 20px auto;
+  width: 90%;
+}
+
+.task-list h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #007bff;
+}
+
+/* Tableau des tâches */
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-table th,
+.tasks-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.tasks-table th {
+  background-color: #007bff;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.tasks-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tasks-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.tasks-table td {
+  color: #555;
+}
+
+/* Priorité critique */
+.priority-critique {
+  color: #fff;
+  background-color: #ff4d4d; /* Rouge */
+  font-weight: bold;
+}
+
+/* Priorité haute */
+.priority-haute {
+  color: #fff;
+  background-color: #ffa500; /* Orange */
+  font-weight: bold;
+}
+
+/* Priorité moyenne */
+.priority-moyenne {
+  color: #000;
+  background-color: #ffff00; /* Jaune */
+  font-weight: bold;
+}
+
+/* Priorité basse */
+.priority-basse {
+  color: #fff;
+  background-color: #4caf50; /* Vert */
+  font-weight: bold;
+}
+/* Style général pour les boutons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff; /* Couleur bleue */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Effet au survol */
+button:hover {
+  background-color: #0056b3; /* Couleur bleue plus foncée */
+  transform: scale(1.05); /* Légère mise en avant */
+}
+
+/* Bouton de suppression (rouge) */
+button.delete-task {
+  background-color: #676767; /* Rouge */
+}
+
+button.delete-task:hover {
+  background-color: #792424; /* Rouge plus foncé */
+}
+
+/* Bouton de modification (orange) */
+button.edit-task {
+  background-color: #676767; /* Orange */
+  color: #fff; /* Texte noir */
+}
+
+button.edit-task:hover {
+  background-color: #9d652d; /* Orange plus foncé */
+}
+
+/* Bouton pour afficher/masquer le formulaire */
+#toggle-form-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #28a745; /* Vert */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#toggle-form-btn:hover {
+  background-color: #218838; /* Vert plus foncé */
+  transform: scale(1.05); /* Légère mise en avant */
+}
+
+/* Style pour le bouton "Retour" */
+#back-btn {
+  display: inline-block;
+  margin: 10px 0 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6c757d; /* Gris */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#back-btn:hover {
+  background-color: #5a6268; /* Gris plus foncé */
+  transform: scale(1.05);
+}
+
+/* Style pour les détails de la tâche */
+.task-details {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-details p {
+  margin: 10px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.task-details p strong {
+  color: #333;
+}
+
+/* Style pour le formulaire de modification */
+#task-form {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Style pour les labels avec astérisque alignée à gauche */
+label {
+  font-weight: bold;
+  display: flex; /* Utilise flexbox pour aligner les éléments */
+  align-items: left; /* Aligne verticalement le texte et l'astérisque */
+}
+
+label .required {
+  color: red;
+  font-size: 14px;
+  margin-right: 5px; /* Ajoute un espace entre l'astérisque et le texte */
+}
+
+#task-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+#task-form input,
+#task-form textarea,
+#task-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+#task-form input:focus,
+#task-form textarea:focus,
+#task-form select:focus {
+  border-color: #007bff;
+  outline: none;
+  background-color: #fff;
+}
+
+#task-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#task-form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#task-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Style pour les champs désactivés */
+#task-form input[disabled] {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+/* Style pour les lignes cliquables */
+.tasks-table .task-row {
+  cursor: pointer; /* Change le curseur en forme de main */
+  transition: background-color 0.2s ease;
+}
+
+.tasks-table .task-row:hover {
+  background-color: #f1f1f1; /* Change la couleur de fond au survol */
+}
+
+/* Style pour les colonnes triées */
+.tasks-table th {
+  cursor: pointer;
+  position: relative;
+}
+
+.tasks-table th::after {
+  content: "▼"; /* Flèche descendante par défaut */
+  position: absolute;
+  right: 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.tasks-table th.sorted-asc::after {
+  content: "▲"; /* Flèche ascendante */
+  opacity: 1;
+}
+
+.tasks-table th.sorted-desc::after {
+  content: "▼"; /* Flèche descendante */
+  opacity: 1;
+}
+
+/* Style pour la section des commentaires */
+.task-comments {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-comments h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+#comments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+#comments-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#comments-list li strong {
+  color: #007bff;
+}
+
+#comments-list li span {
+  font-size: 12px;
+  color: #666;
+  margin-left: 10px;
+}
+
+#comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#comment-form input,
+#comment-form textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+#comment-form input:focus,
+#comment-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+#comment-form button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#comment-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.sous-tache {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sous-tache input,
+.sous-tache select {
+  padding: 5px;
+  font-size: 14px;
+}
+
+.delete-sous-tache-btn {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-sous-tache-btn:hover {
+  background-color: #cc0000;
+}
