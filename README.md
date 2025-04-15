@@ -25,7 +25,7 @@ Bienvenue dans le gestionnaire de tâches, une application web permettant de cr�
    MONGO_URI=your_mongodb_uri
    ```
 
-4. Démarrez le serveur :
+4. Démarrez le serveur dans le dossier ./Backend/:
    ```bash
    npm start
    ```
