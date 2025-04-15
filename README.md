@@ -15,7 +15,7 @@ Bienvenue dans le gestionnaire de tâches, une application web permettant de cr�
    cd gestionnaire-de-taches
    ```
 
-2. Installez les dépendances :
+2. Installez les dépendances dans le dossier ./Backend/:
    ```bash
    npm install
    ```
